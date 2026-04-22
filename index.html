@@ -10,30 +10,38 @@
       text-align: center;
       margin-top: 100px;
 
-      /* 🌙 Islamic-style soft background */
       background-color: #f4f1e8;
       background-image: url("https://www.transparenttextures.com/patterns/arabesque.png");
       background-repeat: repeat;
     }
 
-    /* 🟩 Center container */
     .box {
       background: #ffffff;
-      width: 350px;
+      width: 360px;
       margin: auto;
       padding: 40px;
       border-radius: 12px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
+    .header {
+      font-weight: bold;
+      font-size: 14px;
+      color: #0f5132;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
     h2 {
       color: #0f5132;
       margin-bottom: 10px;
+      font-size: 20px;
     }
 
     p {
       color: #666;
       margin-bottom: 20px;
+      font-size: 14px;
     }
 
     input {
@@ -69,7 +77,12 @@
   <div class="box">
 
 ```
-<h2>Weekly Islamic Contest</h2>
+<!-- 🟢 NEW TOP TITLE -->
+<div class="header">
+  Sheikh Abdullah bin Zaid Al Mahmoud Islamic Cultural Centre
+</div>
+
+<h2>Monthly Islamic Contest</h2>
 <p>Enter the monthly secret code to continue</p>
 
 <input type="text" id="code" placeholder="Enter code">
@@ -82,7 +95,7 @@
   <script>
     function checkCode() {
       var userCode = document.getElementById("code").value;
-      var correctCode = "Binzaid"; // 🔁 CHANGE THIS EVERY MONTH
+      var correctCode = "Binzaid";
 
       if (userCode === correctCode) {
         window.location.href = "https://forms.cloud.microsoft/r/50u7mdQuj8";
