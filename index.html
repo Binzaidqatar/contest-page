@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Contest Access</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 100px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Weekly Islamic Contest</h2>
+  <p>Enter the monthly secret code to continue</p>
+
+  <input type="text" id="code" placeholder="Enter code">
+  <br><br>
+  <button onclick="checkCode()">Submit</button>
+
+  <script>
+    function checkCode() {
+      var userCode = document.getElementById("code").value;
+      var correctCode = "Binzaid"; // 🔁 CHANGE THIS EVERY MONTH
+
+      if (userCode === correctCode) {
+        window.location.href = "https://forms.cloud.microsoft/r/50u7mdQuj8";
+      } else {
+        alert("Invalid code. Try again.");
+      }
+    }
+  </script>
+
+</body>
+</html>
