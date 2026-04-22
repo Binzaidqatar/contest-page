@@ -3,26 +3,81 @@
 <html>
 <head>
   <title>Contest Access</title>
+
   <style>
     body {
       font-family: Arial;
       text-align: center;
       margin-top: 100px;
+
+      /* 🌙 Islamic-style soft background */
+      background-color: #f4f1e8;
+      background-image: url("https://www.transparenttextures.com/patterns/arabesque.png");
+      background-repeat: repeat;
     }
-    input, button {
+
+    /* 🟩 Center container */
+    .box {
+      background: #ffffff;
+      width: 350px;
+      margin: auto;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #0f5132;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    input {
       padding: 10px;
       font-size: 16px;
+      width: 90%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px;
+      font-size: 16px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background-color: #0f5132;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #146c43;
     }
   </style>
+
 </head>
+
 <body>
 
-  <h2>Weekly Islamic Contest</h2>
-  <p>Enter the monthly secret code to continue</p>
+  <div class="box">
 
-  <input type="text" id="code" placeholder="Enter code">
-  <br><br>
-  <button onclick="checkCode()">Submit</button>
+```
+<h2>Weekly Islamic Contest</h2>
+<p>Enter the monthly secret code to continue</p>
+
+<input type="text" id="code" placeholder="Enter code">
+<br><br>
+<button onclick="checkCode()">Submit</button>
+```
+
+  </div>
 
   <script>
     function checkCode() {
