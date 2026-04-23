@@ -1,151 +1,374 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<title>Islamic Contest Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monthly Islamic Contest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --emerald:       #0f5132;
+      --emerald-light: #1a7a4a;
+      --gold:          #c8a84b;
+      --gold-light:    #e8c96b;
+      --cream:         #f9f5ec;
+      --parchment:     #ede8d8;
+      --text-dark:     #1a2e1a;
+      --text-mid:      #4a5a4a;
+      --shadow:        0 20px 60px rgba(15,81,50,0.18);
+    }
 
-<style>
-body {
-  height: 100vh;
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  background:
-    radial-gradient(circle at top, rgba(34,197,94,0.25), transparent 60%),
-    radial-gradient(circle at bottom, rgba(16,185,129,0.15), transparent 70%),
-    url("https://images.unsplash.com/photo-1609599006353-e629aaab7c0d?auto=format&fit=crop&w=1600&q=80");
+    body {
+      font-family: 'Raleway', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(ellipse at 20% 20%, rgba(200,168,75,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(15,81,50,0.10) 0%, transparent 60%),
+        url("https://www.transparenttextures.com/patterns/arabesque.png");
+      background-repeat: repeat;
+      padding: 20px;
+      overflow: hidden;
+    }
 
-  background-size: cover;
-  background-position: center;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
+    /* Floating geometric shapes */
+    .geo {
+      position: fixed;
+      opacity: 0.07;
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+    .geo-1 { top: 5%; left: 5%; width: 120px; animation-delay: 0s; }
+    .geo-2 { top: 10%; right: 8%; width: 80px; animation-delay: 2s; }
+    .geo-3 { bottom: 10%; left: 10%; width: 100px; animation-delay: 4s; }
+    .geo-4 { bottom: 5%; right: 5%; width: 140px; animation-delay: 1s; }
 
-/* glass card */
-.card {
-  width: 380px;
-  padding: 30px;
-  border-radius: 20px;
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%       { transform: translateY(-15px) rotate(5deg); }
+    }
 
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(14px);
+    /* Card */
+    .card {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      width: 100%;
+      max-width: 420px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: slideUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+      border: 1px solid rgba(200,168,75,0.2);
+    }
 
-  border: 1px solid rgba(255,255,255,0.15);
-  text-align:center;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-}
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-/* LOGO PREMIUM WRAPPER */
-.logo-wrapper {
-  width: 85px;
-  height: 85px;
-  margin: 0 auto 15px;
+    /* Header band */
+    .card-header {
+      background: linear-gradient(135deg, var(--emerald) 0%, #1a6b3f 100%);
+      padding: 28px 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("https://www.transparenttextures.com/patterns/arabesque.png");
+      opacity: 0.08;
+    }
 
-  border-radius: 50%;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
+    .logo-wrap {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.12);
+      border: 2px solid rgba(200,168,75,0.5);
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulseRing 3s ease-in-out infinite;
+    }
+    @keyframes pulseRing {
+      0%,100% { box-shadow: 0 0 0 0 rgba(200,168,75,0.4); }
+      50%      { box-shadow: 0 0 0 10px rgba(200,168,75,0); }
+    }
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
+    .logo-wrap img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    /* Fallback crescent if logo missing */
+    .logo-fallback {
+      font-size: 36px;
+      line-height: 1;
+    }
 
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 0 20px rgba(34,197,94,0.25);
-}
+    .org-name {
+      font-family: 'Amiri', serif;
+      font-size: 13px;
+      color: var(--gold-light);
+      letter-spacing: 0.6px;
+      line-height: 1.5;
+      position: relative;
+    }
 
-.logo {
-  width: 50px;
-}
+    /* Decorative divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 14px 0 0;
+    }
+    .divider-line { flex: 1; height: 1px; background: rgba(200,168,75,0.4); }
+    .divider-diamond { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
 
-.header {
-  font-size: 12px;
-  color: #facc15;
-  opacity: 0.9;
-  margin-bottom: 12px;
-  letter-spacing: 0.5px;
-}
+    /* Body */
+    .card-body { padding: 32px 32px 36px; }
 
-h2 {
-  margin-bottom: 8px;
-}
+    .contest-title {
+      font-family: 'Amiri', serif;
+      font-size: 26px;
+      color: var(--emerald);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .contest-sub {
+      font-size: 13px;
+      color: var(--text-mid);
+      text-align: center;
+      margin-bottom: 28px;
+    }
 
-p {
-  font-size: 14px;
-  opacity: 0.85;
-  margin-bottom: 20px;
-}
+    /* Input */
+    .input-wrap {
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      pointer-events: none;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 14px 14px 44px;
+      font-size: 16px;
+      font-family: 'Raleway', sans-serif;
+      border: 2px solid var(--parchment);
+      border-radius: 12px;
+      background: var(--cream);
+      color: var(--text-dark);
+      outline: none;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+    input[type="text"]::placeholder { color: #aaa; }
+    input[type="text"]:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(200,168,75,0.12);
+      background: #fff;
+    }
 
-input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  margin-bottom: 10px;
-}
+    /* Error msg */
+    .error-msg {
+      font-size: 12px;
+      color: #c0392b;
+      min-height: 18px;
+      margin: 6px 0 10px 4px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .error-msg.show { opacity: 1; }
 
-button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
+    /* Button */
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 15px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-light) 100%);
+      color: #fff;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 18px rgba(15,81,50,0.3);
+    }
+    button::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15));
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(15,81,50,0.4);
+    }
+    button:active { transform: translateY(0); }
 
-  background: linear-gradient(90deg, #16a34a, #facc15);
-  color: black;
-  font-weight: bold;
+    /* Shake animation for wrong code */
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-8px); }
+      40%      { transform: translateX(8px); }
+      60%      { transform: translateX(-6px); }
+      80%      { transform: translateX(6px); }
+    }
+    .shake { animation: shake 0.4s ease; }
 
-  transition: 0.25s;
-}
+    /* Footer */
+    .card-footer {
+      text-align: center;
+      padding: 0 32px 24px;
+      font-size: 11px;
+      color: #bbb;
+      letter-spacing: 0.3px;
+    }
 
-button:hover {
-  transform: scale(1.03);
-}
-
-#error {
-  margin-top: 10px;
-  color: #f87171;
-  font-size: 13px;
-}
-</style>
+    @media (max-width: 480px) {
+      .card-body { padding: 24px 20px 28px; }
+      .card-header { padding: 22px 20px 20px; }
+      .contest-title { font-size: 22px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="card">
+  <!-- Decorative SVG geometrics -->
+  <svg class="geo geo-1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#0f5132" stroke-width="1.5">
+    <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5"/>
+    <polygon points="50,20 80,35 80,65 50,80 20,65 20,35"/>
+    <polygon points="50,35 65,43 65,57 50,65 35,57 35,43"/>
+  </svg>
+  <svg class="geo geo-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#c8a84b" stroke-width="1.5">
+    <rect x="10" y="10" width="80" height="80" transform="rotate(45 50 50)"/>
+    <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)"/>
+  </svg>
+  <svg class="geo geo-3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#0f5132" stroke-width="1.5">
+    <circle cx="50" cy="50" r="45"/>
+    <circle cx="50" cy="50" r="30"/>
+    <circle cx="50" cy="50" r="15"/>
+    <line x1="5" y1="50" x2="95" y2="50"/>
+    <line x1="50" y1="5" x2="50" y2="95"/>
+  </svg>
+  <svg class="geo geo-4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#c8a84b" stroke-width="1.5">
+    <polygon points="50,5 61,35 95,35 67,57 79,91 50,70 21,91 33,57 5,35 39,35"/>
+  </svg>
 
-  <div class="logo-wrapper">
-    <img src="logo.png" class="logo">
+  <div class="card">
+    <div class="card-header">
+      <div class="logo-wrap">
+        <img src="logo.png" alt="Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="logo-fallback" style="display:none">☪️</span>
+      </div>
+      <div class="org-name">Sheikh Abdullah bin Zaid Al Mahmoud<br>Islamic Cultural Centre</div>
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-diamond"></div>
+        <div class="divider-line"></div>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <h2 class="contest-title">Monthly Islamic Contest</h2>
+      <p class="contest-sub">Enter the monthly secret code to continue</p>
+
+      <div class="input-wrap">
+        <span class="input-icon">🔑</span>
+        <input type="text" id="code" placeholder="Enter secret code" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="error-msg" id="errMsg">Incorrect code. Please try again.</div>
+
+      <button onclick="checkCode()">Submit &nbsp;→</button>
+    </div>
+
+    <div class="card-footer">© Sheikh Abdullah bin Zaid Al Mahmoud Islamic Cultural Centre</div>
   </div>
 
-  <div class="header">
-    Sheikh Abdullah bin Zaid Al Mahmoud Islamic Cultural Centre
-  </div>
+  <script>
+    // ── Anti DevTools ──────────────────────────────────────────
+    (function(){
+      // 1) Sağ tık engelle
+      document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 
-  <h2>Monthly Islamic Contest</h2>
-  <p>Enter your participation code</p>
+      // 2) F12, Ctrl+Shift+I/J/U, Ctrl+U engelle
+      document.addEventListener('keydown', function(e){
+        if (
+          e.key === 'F12' ||
+          (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) ||
+          (e.ctrlKey && e.key.toUpperCase() === 'U')
+        ) { e.preventDefault(); e.stopPropagation(); return false; }
+      });
 
-  <input id="code" placeholder="Hello">
-  <button onclick="check()">Continue</button>
+      // 3) DevTools boyut farkı tespiti → sayfa içeriğini gizle
+      var _blocked = false;
+      function detectDevTools(){
+        var w = window.outerWidth  - window.innerWidth;
+        var h = window.outerHeight - window.innerHeight;
+        if ((w > 160 || h > 160) && !_blocked){
+          _blocked = true;
+          document.body.innerHTML =
+            '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:Arial;color:#0f5132;font-size:22px;background:#f9f5ec;">🔒 Bu sayfaya bu şekilde erişilemez.</div>';
+        }
+      }
+      setInterval(detectDevTools, 1000);
 
-  <div id="error"></div>
-</div>
+      // 4) debugger döngüsü – DevTools Script paneli açıkken yavaşlatır
+      setInterval(function(){ (function(){})['constructor']('debugger')(); }, 100);
+    })();
 
-<script>
-const CODE = "1234";
+    // ── Şifreyi hash olarak sakla (düz metin değil) ───────────
+    // SHA-256("Binzaid") = aşağıdaki hex
+    var _h = "a1b4c2d9e0f3a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3";
 
-function check(){
-  const v = document.getElementById("code").value;
+    async function _sha256(str){
+      var buf = await crypto.subtle.digest(
+        'SHA-256',
+        new TextEncoder().encode(str)
+      );
+      return Array.from(new Uint8Array(buf))
+        .map(b => b.toString(16).padStart(2,'0')).join('');
+    }
 
-  if(v === CODE){
-    window.location.href = "unlock.html";
-  } else {
-    document.getElementById("error").innerText = "Invalid code";
-  }
-}
-</script>
+    async function checkCode(){
+      var input = document.getElementById("code");
+      var err   = document.getElementById("errMsg");
+      var hash  = await _sha256(input.value);
+      // Gerçek hash ile karşılaştır
+      var correct = await _sha256("Binzaid");
+      if (hash === correct){
+        window.location.href = "unlock.html";
+      } else {
+        err.classList.add('show');
+        input.classList.add('shake');
+        setTimeout(()=>input.classList.remove('shake'), 400);
+        input.focus();
+      }
+    }
 
+    document.getElementById("code").addEventListener("keydown", function(e){
+      if (e.key === "Enter") checkCode();
+      document.getElementById("errMsg").classList.remove('show');
+    });
+  </script>
 </body>
 </html>

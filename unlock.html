@@ -1,111 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<title>Access Granted</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Granted – Islamic Contest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --emerald:       #0f5132;
+      --emerald-light: #1a7a4a;
+      --gold:          #c8a84b;
+      --gold-light:    #e8c96b;
+      --cream:         #f9f5ec;
+      --parchment:     #ede8d8;
+      --text-dark:     #1a2e1a;
+      --text-mid:      #4a5a4a;
+      --shadow:        0 20px 60px rgba(15,81,50,0.18);
+    }
 
-<style>
-body {
-  height: 100vh;
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  background:
-    radial-gradient(circle at top, rgba(34,197,94,0.25), transparent 60%),
-    radial-gradient(circle at bottom, rgba(16,185,129,0.15), transparent 70%),
-    url("https://images.unsplash.com/photo-1609599006353-e629aaab7c0d?auto=format&fit=crop&w=1600&q=80");
+    body {
+      font-family: 'Raleway', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(ellipse at 20% 20%, rgba(200,168,75,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(15,81,50,0.10) 0%, transparent 60%),
+        url("https://www.transparenttextures.com/patterns/arabesque.png");
+      background-repeat: repeat;
+      padding: 20px;
+      overflow: hidden;
+    }
 
-  background-size: cover;
-  background-position: center;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
+    /* Floating geometric shapes – same as index.html */
+    .geo {
+      position: fixed;
+      opacity: 0.07;
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+    .geo-1 { top: 5%;    left: 5%;   width: 120px; animation-delay: 0s; }
+    .geo-2 { top: 10%;   right: 8%;  width: 80px;  animation-delay: 2s; }
+    .geo-3 { bottom: 10%;left: 10%;  width: 100px; animation-delay: 4s; }
+    .geo-4 { bottom: 5%; right: 5%;  width: 140px; animation-delay: 1s; }
 
-.card {
-  width: 380px;
-  padding: 30px;
-  border-radius: 20px;
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-15px) rotate(5deg); }
+    }
 
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(14px);
+    /* Card */
+    .card {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      width: 100%;
+      max-width: 420px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: slideUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+      border: 1px solid rgba(200,168,75,0.2);
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-  border: 1px solid rgba(255,255,255,0.15);
-  text-align:center;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-}
+    /* Header */
+    .card-header {
+      background: linear-gradient(135deg, var(--emerald) 0%, #1a6b3f 100%);
+      padding: 28px 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("https://www.transparenttextures.com/patterns/arabesque.png");
+      opacity: 0.08;
+    }
 
-.logo-wrapper {
-  width: 85px;
-  height: 85px;
-  margin: 0 auto 15px;
+    .logo-wrap {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.12);
+      border: 2px solid rgba(200,168,75,0.5);
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulseRing 3s ease-in-out infinite;
+    }
+    @keyframes pulseRing {
+      0%,100% { box-shadow: 0 0 0 0 rgba(200,168,75,0.4); }
+      50%      { box-shadow: 0 0 0 10px rgba(200,168,75,0); }
+    }
+    .logo-wrap img {
+      width: 56px; height: 56px;
+      object-fit: contain; border-radius: 50%;
+    }
+    .logo-fallback { font-size: 36px; line-height: 1; }
 
-  border-radius: 50%;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
+    .org-name {
+      font-family: 'Amiri', serif;
+      font-size: 13px;
+      color: var(--gold-light);
+      letter-spacing: 0.6px;
+      line-height: 1.5;
+      position: relative;
+    }
+    .divider {
+      display: flex; align-items: center; gap: 10px; margin: 14px 0 0;
+    }
+    .divider-line    { flex: 1; height: 1px; background: rgba(200,168,75,0.4); }
+    .divider-diamond { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
 
-  display:flex;
-  justify-content:center;
-  align-items:center;
+    /* Body */
+    .card-body { padding: 36px 32px 32px; text-align: center; }
 
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 0 20px rgba(34,197,94,0.25);
-}
+    /* Animated check badge */
+    .badge {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--emerald), var(--emerald-light));
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 30px rgba(15,81,50,0.35);
+      animation: popIn 0.6s 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.3); }
+      to   { opacity: 1; transform: scale(1); }
+    }
 
-.logo {
-  width: 50px;
-}
+    /* SVG checkmark draw animation */
+    .badge svg { width: 40px; height: 40px; }
+    .check-path {
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: drawCheck 0.5s 0.8s ease forwards;
+    }
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
 
-.header {
-  font-size: 12px;
-  color: #facc15;
-  opacity: 0.9;
-  margin-bottom: 12px;
-}
+    /* Stars burst */
+    .stars {
+      font-size: 22px;
+      letter-spacing: 4px;
+      animation: fadeIn 0.6s 1.1s ease both;
+      opacity: 0;
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
-button {
-  padding: 12px 20px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
+    .access-title {
+      font-family: 'Amiri', serif;
+      font-size: 28px;
+      color: var(--emerald);
+      margin: 14px 0 8px;
+      animation: fadeIn 0.6s 0.9s ease both;
+      opacity: 0;
+    }
+    .access-sub {
+      font-size: 14px;
+      color: var(--text-mid);
+      margin-bottom: 28px;
+      line-height: 1.6;
+      animation: fadeIn 0.6s 1s ease both;
+      opacity: 0;
+    }
 
-  background: linear-gradient(90deg, #16a34a, #facc15);
-  color: black;
-  font-weight: bold;
+    /* Button */
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 15px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold) 0%, #b8933b 100%);
+      color: #fff;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 18px rgba(200,168,75,0.4);
+      animation: fadeIn 0.6s 1.1s ease both;
+      opacity: 0;
+    }
+    button::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15));
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(200,168,75,0.55);
+    }
+    button:active { transform: translateY(0); }
 
-  transition: 0.25s;
-}
+    .card-footer {
+      text-align: center;
+      padding: 0 32px 24px;
+      font-size: 11px;
+      color: #bbb;
+    }
 
-button:hover {
-  transform: scale(1.03);
-}
-</style>
+    @media (max-width: 480px) {
+      .card-body { padding: 26px 20px 24px; }
+      .card-header { padding: 22px 20px 20px; }
+      .access-title { font-size: 24px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="card">
+  <!-- Decorative SVG geometrics (same as index.html) -->
+  <svg class="geo geo-1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#0f5132" stroke-width="1.5">
+    <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5"/>
+    <polygon points="50,20 80,35 80,65 50,80 20,65 20,35"/>
+    <polygon points="50,35 65,43 65,57 50,65 35,57 35,43"/>
+  </svg>
+  <svg class="geo geo-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#c8a84b" stroke-width="1.5">
+    <rect x="10" y="10" width="80" height="80" transform="rotate(45 50 50)"/>
+    <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)"/>
+  </svg>
+  <svg class="geo geo-3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#0f5132" stroke-width="1.5">
+    <circle cx="50" cy="50" r="45"/>
+    <circle cx="50" cy="50" r="30"/>
+    <circle cx="50" cy="50" r="15"/>
+    <line x1="5" y1="50" x2="95" y2="50"/>
+    <line x1="50" y1="5" x2="50" y2="95"/>
+  </svg>
+  <svg class="geo geo-4" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#c8a84b" stroke-width="1.5">
+    <polygon points="50,5 61,35 95,35 67,57 79,91 50,70 21,91 33,57 5,35 39,35"/>
+  </svg>
 
-  <div class="logo-wrapper">
-    <img src="logo.png" class="logo">
+  <div class="card">
+    <div class="card-header">
+      <div class="logo-wrap">
+        <img src="logo.png" alt="Logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="logo-fallback" style="display:none">☪️</span>
+      </div>
+      <div class="org-name">Sheikh Abdullah bin Zaid Al Mahmoud<br>Islamic Cultural Centre</div>
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-diamond"></div>
+        <div class="divider-line"></div>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <!-- Animated check badge -->
+      <div class="badge">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polyline class="check-path" points="8,22 16,30 32,12"
+            stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="stars">✦ ✦ ✦</div>
+      <h2 class="access-title">Access Granted</h2>
+      <p class="access-sub">You are eligible to participate in the contest.<br>Click below to begin.</p>
+
+      <button onclick="goToForm()">Start Contest &nbsp;→</button>
+    </div>
+
+    <div class="card-footer">© Sheikh Abdullah bin Zaid Al Mahmoud Islamic Cultural Centre</div>
   </div>
 
-  <div class="header">
-    Sheikh Abdullah bin Zaid Al Mahmoud Islamic Cultural Centre
-  </div>
-
-  <h2>Access Granted</h2>
-  <p>You are eligible to participate</p>
-
-  <button onclick="go()">Start Contest</button>
-</div>
-
-<script>
-function go(){
-  window.location.href = "https://forms.cloud.microsoft/r/iNjPq8mA1f";
-}
-</script>
-
+  <script>
+    function goToForm() {
+      window.location.href = "https://forms.cloud.microsoft/r/iNjPq8mA1f";
+    }
+  </script>
 </body>
 </html>
