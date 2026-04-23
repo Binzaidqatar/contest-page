@@ -1,79 +1,37 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-  <title>Contest Access</title>
-
+  <meta charset="UTF-8">
+  <title>Contest Login</title>
   <style>
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       text-align: center;
       margin-top: 100px;
-
-      background-color: #f4f1e8;
-      background-image: url("https://www.transparenttextures.com/patterns/arabesque.png");
-      background-repeat: repeat;
     }
-
-    .box {
-      background: #ffffff;
-      width: 360px;
-      margin: auto;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-
     .header {
+      font-size: 20px;
       font-weight: bold;
-      font-size: 14px;
-      color: #0f5132;
-      margin-bottom: 10px;
+      margin-bottom: 40px;
     }
-
-    h2 {
-      color: #0f5132;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #666;
-      margin-bottom: 20px;
-    }
-
     input {
       padding: 10px;
+      width: 200px;
       font-size: 16px;
-      width: 90%;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      outline: none;
     }
-
     button {
-      margin-top: 15px;
-      padding: 12px;
-      font-size: 16px;
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-      background-color: #0f5132;
-      color: white;
+      padding: 10px 20px;
+      margin-top: 10px;
       cursor: pointer;
     }
-
-    button:hover {
-      background-color: #146c43;
+    #error {
+      color: red;
+      margin-top: 10px;
     }
   </style>
-
 </head>
-
 <body>
 
-  <div class="box">
-
-```
 <div class="header">
   Sheikh Abdullah bin Zaid Al Mahmoud Islamic Cultural Centre
 </div>
@@ -82,24 +40,25 @@
 <p>Enter the participation code to continue</p>
 
 <input type="text" id="code" placeholder="Enter code">
-<br><br>
+<br>
 <button onclick="checkCode()">Submit</button>
-```
 
-  </div>
+<p id="error"></p>
 
-  <script>
-    function checkCode() {
-      var userCode = document.getElementById("code").value;
-      var correctCode = "Binzaid"; // CHANGE MONTHLY
+<script>
+  // 🔑 Şifreyi buradan değiştir
+  const SECRET_CODE = "Hello";
 
-      if (userCode === correctCode) {
-        window.location.href = "unlock.html";
-      } else {
-        alert("Invalid code. Try again.");
-      }
+  function checkCode() {
+    const input = document.getElementById("code").value;
+
+    if (input === SECRET_CODE) {
+      window.location.href = "unlock.html";
+    } else {
+      document.getElementById("error").innerText = "Invalid code. Please try again.";
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
