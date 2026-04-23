@@ -1,63 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Contest Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 100px;
-    }
-    .header {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 40px;
-    }
-    input {
-      padding: 10px;
-      width: 200px;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 20px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-    #error {
-      color: red;
-      margin-top: 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Islamic Contest Login</title>
+
+<style>
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+
+  background:
+    radial-gradient(circle at top, rgba(34,197,94,0.25), transparent 60%),
+    radial-gradient(circle at bottom, rgba(16,185,129,0.15), transparent 70%),
+    url("https://images.unsplash.com/photo-1609599006353-e629aaab7c0d?auto=format&fit=crop&w=1600&q=80");
+
+  background-size: cover;
+  background-position: center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* glass card */
+.card {
+  width: 380px;
+  padding: 30px;
+  border-radius: 20px;
+
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.15);
+  text-align:center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+/* LOGO PREMIUM WRAPPER */
+.logo-wrapper {
+  width: 85px;
+  height: 85px;
+  margin: 0 auto 15px;
+
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 20px rgba(34,197,94,0.25);
+}
+
+.logo {
+  width: 50px;
+}
+
+.header {
+  font-size: 12px;
+  color: #facc15;
+  opacity: 0.9;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+h2 {
+  margin-bottom: 8px;
+}
+
+p {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(90deg, #16a34a, #facc15);
+  color: black;
+  font-weight: bold;
+
+  transition: 0.25s;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+#error {
+  margin-top: 10px;
+  color: #f87171;
+  font-size: 13px;
+}
+</style>
 </head>
+
 <body>
 
-<div class="header">
-  Sheikh Abdullah bin Zaid Al Mahmoud Islamic Cultural Centre
+<div class="card">
+
+  <div class="logo-wrapper">
+    <img src="logo.png" class="logo">
+  </div>
+
+  <div class="header">
+    Sheikh Abdullah bin Zaid Al Mahmoud Islamic Cultural Centre
+  </div>
+
+  <h2>Monthly Islamic Contest</h2>
+  <p>Enter your participation code</p>
+
+  <input id="code" placeholder="Hello">
+  <button onclick="check()">Continue</button>
+
+  <div id="error"></div>
 </div>
 
-<h2>Weekly Islamic Contest</h2>
-<p>Enter the participation code to continue</p>
-
-<input type="text" id="code" placeholder="Enter code">
-<br>
-<button onclick="checkCode()">Submit</button>
-
-<p id="error"></p>
-
 <script>
-  // 🔑 Şifreyi buradan değiştir
-  const SECRET_CODE = "Hello";
+const CODE = "1234";
 
-  function checkCode() {
-    const input = document.getElementById("code").value;
+function check(){
+  const v = document.getElementById("code").value;
 
-    if (input === SECRET_CODE) {
-      window.location.href = "unlock.html";
-    } else {
-      document.getElementById("error").innerText = "Invalid code. Please try again.";
-    }
+  if(v === CODE){
+    window.location.href = "unlock.html";
+  } else {
+    document.getElementById("error").innerText = "Invalid code";
   }
+}
 </script>
 
 </body>
