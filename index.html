@@ -29,19 +29,16 @@
       font-size: 14px;
       color: #0f5132;
       margin-bottom: 10px;
-      letter-spacing: 0.5px;
     }
 
     h2 {
       color: #0f5132;
       margin-bottom: 10px;
-      font-size: 20px;
     }
 
     p {
       color: #666;
       margin-bottom: 20px;
-      font-size: 14px;
     }
 
     input {
@@ -77,13 +74,12 @@
   <div class="box">
 
 ```
-<!-- 🟢 NEW TOP TITLE -->
 <div class="header">
   Sheikh Abdullah bin Zaid Al Mahmoud Islamic Cultural Centre
 </div>
 
-<h2>Monthly Islamic Contest</h2>
-<p>Enter the monthly secret code to continue</p>
+<h2>Weekly Islamic Contest</h2>
+<p>Enter the participation code to continue</p>
 
 <input type="text" id="code" placeholder="Enter code">
 <br><br>
@@ -95,7 +91,7 @@
   <script>
     function checkCode() {
       var userCode = document.getElementById("code").value;
-      var correctCode = "Binzaid";
+      var correctCode = "Binzaid"; // CHANGE MONTHLY
 
       if (userCode === correctCode) {
         window.location.href = "unlock.html";
