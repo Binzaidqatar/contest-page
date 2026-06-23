@@ -410,7 +410,7 @@
       var err   = document.getElementById("errMsg");
       var hash  = await _sha256(input.value);
       // Gerçek hash ile karşılaştır
-      var correct = await _sha256("Al-Hakeem");
+      var correct = await _sha256("AlHakeem");
       if (hash === correct){
         window.location.href = "unlock.html?v=" + Date.now();
       } else {
