@@ -393,7 +393,10 @@
       return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
     }
 
-    fetch('https://raw.githubusercontent.com/Binzaidqatar/contest-page/main/config.json?v=' + Date.now(), { cache: 'no-store' })
+    fetch('https://api.github.com/repos/Binzaidqatar/contest-page/contents/config.json?v=' + Date.now(), {
+      cache: 'no-store',
+      headers: { 'Accept': 'application/vnd.github.v3.raw' }
+    })
       .then(r => r.json())
       .then(data => { _correctCode = data.code; })
       .catch(() => { _correctCode = null; });
