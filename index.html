@@ -361,12 +361,9 @@
   </div>
 
   <script>
-    // ── Anti DevTools ──────────────────────────────────────────
+    // ── Anti DevTools ─────────────────────────────────────────
     (function(){
-      // 1) Sağ tık engelle
       document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-
-      // 2) F12, Ctrl+Shift+I/J/U, Ctrl+U engelle
       document.addEventListener('keydown', function(e){
         if (
           e.key === 'F12' ||
@@ -374,8 +371,6 @@
           (e.ctrlKey && e.key.toUpperCase() === 'U')
         ) { e.preventDefault(); e.stopPropagation(); return false; }
       });
-
-      // 3) DevTools boyut farkı tespiti → sayfa içeriğini gizle
       var _blocked = false;
       function detectDevTools(){
         var w = window.outerWidth  - window.innerWidth;
@@ -383,37 +378,43 @@
         if ((w > 160 || h > 160) && !_blocked){
           _blocked = true;
           document.body.innerHTML =
-            '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:Arial;color:#0f5132;font-size:22px;background:#f9f5ec;">🔒 Bu sayfaya bu şekilde erişilemez.</div>';
+            '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:Arial;color:#0f5132;font-size:22px;background:#f9f5ec;">&#128274; Bu sayfaya bu sekilde erisilemiyor.</div>';
         }
       }
       setInterval(detectDevTools, 1000);
-
-      // 4) debugger döngüsü – DevTools Script paneli açıkken yavaşlatır
       setInterval(function(){ (function(){})['constructor']('debugger')(); }, 100);
     })();
 
-    // ── Şifreyi hash olarak sakla (düz metin değil) ───────────
-    // SHA-256("Binzaid") = aşağıdaki hex
-    var _h = "a1b4c2d9e0f3a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3";
+    // ── Sifreyi her acilista GitHub'dan canli cek (cache yok) ─
+    var _correctCode = null;
 
     async function _sha256(str){
-      var buf = await crypto.subtle.digest(
-        'SHA-256',
-        new TextEncoder().encode(str)
-      );
-      return Array.from(new Uint8Array(buf))
-        .map(b => b.toString(16).padStart(2,'0')).join('');
+      var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
     }
+
+    fetch('config.json?v=' + Date.now(), { cache: 'no-store' })
+      .then(r => r.json())
+      .then(data => { _correctCode = data.code; })
+      .catch(() => { _correctCode = null; });
 
     async function checkCode(){
       var input = document.getElementById("code");
       var err   = document.getElementById("errMsg");
-      var hash  = await _sha256(input.value);
-      // Gerçek hash ile karşılaştır
-      var correct = await _sha256("AlHakeem");
-      if (hash === correct){
+
+      if (!_correctCode) {
+        err.textContent = "Connection error. Please refresh.";
+        err.classList.add('show');
+        return;
+      }
+
+      var hashInput   = await _sha256(input.value);
+      var hashCorrect = await _sha256(_correctCode);
+
+      if (hashInput === hashCorrect){
         window.location.href = "unlock.html?v=" + Date.now();
       } else {
+        err.textContent = "Incorrect code. Please try again.";
         err.classList.add('show');
         input.classList.add('shake');
         setTimeout(()=>input.classList.remove('shake'), 400);
@@ -425,6 +426,6 @@
       if (e.key === "Enter") checkCode();
       document.getElementById("errMsg").classList.remove('show');
     });
-  </script>
+  </script>>
 </body>
 </html>
