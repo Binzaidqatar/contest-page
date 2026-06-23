@@ -393,7 +393,7 @@
       return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
     }
 
-    fetch('config.json?v=' + Date.now(), { cache: 'no-store' })
+    fetch('https://raw.githubusercontent.com/Binzaidqatar/contest-page/main/config.json?v=' + Date.now(), { cache: 'no-store' })
       .then(r => r.json())
       .then(data => { _correctCode = data.code; })
       .catch(() => { _correctCode = null; });
